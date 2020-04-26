@@ -9,24 +9,41 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
+const bitecastsRef = db.collection('bitecasts');
+
 
 bitecasts.param('id', (req, res, next, id) => {
-    
-    /*db.get(sql, values, (error, artist) => {
-      if (error) {
-        next(error);
-      } else if (artist) {
-        req.artist = artist;
-        next();
-      } else {
-        res.sendStatus(404);
-      }
-    });*/
 
+    let getDoc = bitecastsRef.doc(id).get()
+    .then(doc => {
+        if (!doc.exists) {
+            console.log('No such document!');
+            res.sendStatus(404);
+        } else {
+            console.log('Document data:', doc.data());
+            req.bitecast = doc.data();
+            next();
+        }
+    })
+    .catch(err => {
+        console.log('Error getting document', err);
+        next(error);
+    });
   });
 
   bitecasts.get('/', (req, res, next) => {
     
+    bitecastsRef.get()
+    .then((snapshot) => {
+        snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+        });
+    })
+    .catch((err) => {
+        console.log('Error getting documents', err);
+    });
+    
+    console.log("Bitecasts GET / ")
 
   });
   
