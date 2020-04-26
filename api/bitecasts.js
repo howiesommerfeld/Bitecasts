@@ -32,10 +32,12 @@ bitecasts.param('id', (req, res, next, id) => {
   });
 
   bitecasts.get('/', (req, res, next) => {
+
+    const query = bitecastsRef.orderBy(field, "desc").limit(pageSize);
     
-    bitecastsRef.get()
-    .then((snapshot) => {
-        snapshot.forEach((doc) => {
+    query.get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
         console.log(doc.id, '=>', doc.data());
         });
     })
@@ -51,6 +53,19 @@ bitecasts.param('id', (req, res, next, id) => {
     res.status(200).json({bitecast: req.bitecast});
   });
 
+const field = 'created';
+const pageSize = 10;
 
+function nextPage(last) {
+    return bitecastsRef.orderBy(field, "desc")
+        .startAfter(last[field])
+        .limit(pageSize);
+}
+
+function prevPage(first) {
+    return bitecastsRef.orderBy(field, "desc")
+        .endBefore(first[field])
+        .limitToLast(pageSize);
+}
 
 module.exports = bitecasts;
