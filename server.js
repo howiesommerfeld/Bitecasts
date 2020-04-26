@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const port = process.env.PORT || 5000;
 
-const router = express.Router()
+const apiRouter = require('./api/api');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-app.use(router);
+app.use('/api', apiRouter);
 
 app.listen(port, () => {
     console.log('listening on *:' + port);
