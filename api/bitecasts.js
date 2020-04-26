@@ -1,5 +1,14 @@
 const express = require('express');
 const bitecasts = express.Router()
+const admin = require('firebase-admin');
+
+let serviceAccount = require('../gcpconfig.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
 
 bitecasts.param('id', (req, res, next, id) => {
     
@@ -18,14 +27,6 @@ bitecasts.param('id', (req, res, next, id) => {
 
   bitecasts.get('/', (req, res, next) => {
     
-    /* db.all('SELECT * FROM Artist WHERE Artist.is_currently_employed = 1',
-      (err, artists) => {
-        if (err) {
-          next(err);
-        } else {
-          res.status(200).json({artists: artists});
-        }
-      }); */
 
   });
   
