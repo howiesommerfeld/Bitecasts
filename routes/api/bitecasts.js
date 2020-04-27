@@ -44,6 +44,7 @@ module.exports = (app) => {
               return results;
           })
           .then((results) =>{
+            console.log(results);
               res.status(200).json({bitecasts: results});
               console.log("Bitecasts GET / ");
           })
@@ -55,6 +56,7 @@ module.exports = (app) => {
         });
         
         app.get('/bitecasts/:id', (req, res, next) => {
+            console.log(req);
           res.status(200).json({bitecast: req.bitecast});
         });
       
