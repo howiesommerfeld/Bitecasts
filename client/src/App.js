@@ -19,6 +19,11 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route path="/api/bitecasts/:id" component={Bitecast} />    
       </Switch>
+      <footer >
+        <div className="bitecast app-link">                
+            <a href="https://play.google.com/store/apps/details?id=com.speakk" target="_blank" rel="noopener noreferrer">Download The Bitecast App Here</a>
+        </div>
+      </footer>
     </div>
     );
 }
