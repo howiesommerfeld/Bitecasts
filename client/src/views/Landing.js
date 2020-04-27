@@ -33,7 +33,7 @@ class Landing extends Component {
   }
 
     getRecentBitecasts() {
-    return fetch(`api/bitecasts/`, {
+    return fetch(`bitecasts/`, {
       accept: "application/json"
     })
     //.then((response)=>{return this.checkStatus(response)})
@@ -60,8 +60,8 @@ class Landing extends Component {
   renderBitecasts() {
     return this.state.bitecasts.map(bitecast => {
         const newTo = { 
-            pathname: `/api/bitecasts/${bitecast.id}`, 
-            state: {bitecast: bitecast }
+            pathname: `/bitecasts/${bitecast.id}`, 
+            state: {bitecast: bitecast}
         };
       return (
         <Link to={newTo}

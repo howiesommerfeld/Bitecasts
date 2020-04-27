@@ -17,7 +17,7 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route path="/api/bitecasts/:id" component={Bitecast} />    
+        <Route path="/bitecasts/:id" component={Bitecast} />    
       </Switch>
       <footer >
         <div className="bitecast app-link">                
