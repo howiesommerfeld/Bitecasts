@@ -34,7 +34,10 @@ class Landing extends Component {
 
     getRecentBitecasts() {
     return fetch(`bitecasts/`, {
-      accept: "application/json"
+        headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
     })
     //.then((response)=>{return this.checkStatus(response)})
     .then((response)=>{return this.parseJSON(response)});
