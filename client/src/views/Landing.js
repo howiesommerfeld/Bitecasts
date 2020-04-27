@@ -59,7 +59,9 @@ class Landing extends Component {
   
   parseJSON(response) {
       //console.log(response.json());
-    return response.json();
+      let json = response.json();
+      console.log(json);
+    return json;
   }
 
   renderBitecasts() {
