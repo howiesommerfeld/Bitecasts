@@ -34,18 +34,25 @@ bitecasts.param('id', (req, res, next, id) => {
   bitecasts.get('/', (req, res, next) => {
 
     const query = bitecastsRef.orderBy(field, "desc").limit(pageSize);
-    
+    const results = [];
     query.get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
+        //console.log(doc.id, '=>', doc.data());
+        let data = doc.data();
+        data["id"] = doc.id;
+        results.push(data);
         });
+        return results;
+    })
+    .then((results) =>{
+        res.status(200).json({bitecasts: results});
+        console.log("Bitecasts GET / ");
     })
     .catch((err) => {
         console.log('Error getting documents', err);
     });
     
-    console.log("Bitecasts GET / ")
 
   });
   
