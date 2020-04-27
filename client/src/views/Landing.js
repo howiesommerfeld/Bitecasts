@@ -40,7 +40,9 @@ class Landing extends Component {
            }
     })
     //.then((response)=>{return this.checkStatus(response)})
-    .then((response)=>{return this.parseJSON(response)});
+    .then((response)=>{
+        console.log(response);
+        return this.parseJSON(response)});
   }
   
   checkStatus(response) {
