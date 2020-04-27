@@ -61,7 +61,7 @@ class Landing extends Component {
     return this.state.bitecasts.map(bitecast => {
         const newTo = { 
             pathname: `/api/bitecasts/${bitecast.id}`, 
-            bitecast: bitecast 
+            state: {bitecast: bitecast }
         };
       return (
         <Link to={newTo}
