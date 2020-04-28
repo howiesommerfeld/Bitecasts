@@ -18,26 +18,11 @@ app.use(morgan('dev'));
 
 app.use('/api', apiRouter);
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-    });
+app.use(express.static(path.join(__dirname, "client", "build")))
 
-if(process.env.NODE_ENV === 'production') {  
-    let p = path.join(__dirname, 'client/build/index.html');
-    app.use('*', (req, res) => {    res.sendfile(p);})
-} else {
-    let p = path.join(__dirname,'client/public/index.html');
-    app.use('*', (req, res) => {  res.sendFile(p);})
-}
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => {
     console.log('listening on *:' + port);
