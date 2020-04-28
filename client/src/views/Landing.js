@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 class Landing extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bitecasts: []
+      bitecasts: [],
+      isLoading:true
     };
   }
 
@@ -15,7 +17,7 @@ class Landing extends Component {
         let bitecasts = response["bitecasts"];
         if (bitecasts.length) {
             const sortedBitecasts = this.sortItemNames(bitecasts);
-            this.setState({bitecasts: sortedBitecasts});
+            this.setState({bitecasts: sortedBitecasts, isLoading: false});
         }
       });
   }
@@ -65,9 +67,9 @@ class Landing extends Component {
     return (
       <div className="Landing">
         <h2>LATEST BITECASTS</h2>
-        <div className="bitecast item-list">
+        {this.state.isLoading ? <Loader></Loader>:<div className="bitecast item-list">
           {this.renderBitecasts()}
-        </div>
+        </div>}
       </div>
     );
   }
