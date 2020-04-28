@@ -38,9 +38,7 @@ class Landing extends Component {
   
       })
     .then((response)=>{
-        console.log(response.text());
-        //return this.parseJSON(response)
-    });
+        return this.parseJSON(response)});
   }
   
   parseJSON(response) {
