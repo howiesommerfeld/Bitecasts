@@ -30,10 +30,10 @@ app.use(function(req, res, next) {
 
 if(process.env.NODE_ENV === 'production') {  
     let p = path.join(__dirname, 'client/build/index.html');
-    app.use('/api*', (req, res) => {    res.sendfile(p);})
+    app.use('*', (req, res) => {    res.sendfile(p);})
 } else {
     let p = path.join(__dirname,'client/public/index.html');
-    app.use('/api*', (req, res) => {  res.sendFile(p);})
+    app.use('*', (req, res) => {  res.sendFile(p);})
 }
 
 app.use(express.static(path.join(__dirname, 'client/build')));
