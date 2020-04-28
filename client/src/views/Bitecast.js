@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 
+
 class Bitecast extends Component {
 
     constructor(props) {
@@ -12,7 +13,6 @@ class Bitecast extends Component {
       }
 
   componentDidMount() {
-
     const linkedState = this.props.location.state;
     if(linkedState) {
         this.setState({
@@ -21,15 +21,17 @@ class Bitecast extends Component {
       });
       return;
     }
-
-
-    fetch(this.props.location.pathname, {
+    let fetchUrl = ""
+    if(this.props.location.pathname){
+        fetchUrl = "/api"+this.props.location.pathname;
+        
+    }
+    fetch(fetchUrl, {
         accept: "application/json"
       })
       //TODO Handle 404 elegantly here:
       .then(res => res.json())
       .then((json)=>{
-          console.log(json);
           this.setState({
               bitecast:json["bitecast"],
               isLoading: false

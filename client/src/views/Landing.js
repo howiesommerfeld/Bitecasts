@@ -48,7 +48,7 @@ class Landing extends Component {
   renderBitecasts() {
     return this.state.bitecasts.map(bitecast => {
         const newTo = { 
-            pathname: `/api/bitecasts/${bitecast.id}`, 
+            pathname: `/bitecasts/${bitecast.id}`, 
             state: {bitecast: bitecast}
         };
       return (

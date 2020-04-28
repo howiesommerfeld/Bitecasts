@@ -38,7 +38,6 @@ bitecasts.param('id', (req, res, next, id) => {
     query.get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-        //console.log(doc.id, '=>', doc.data());
         let data = doc.data();
         data["id"] = doc.id;
         results.push(data);
