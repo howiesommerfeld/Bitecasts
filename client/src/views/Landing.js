@@ -39,6 +39,7 @@ class Landing extends Component {
     //.then((response)=>{return this.checkStatus(response)})
     .then((response)=>{
         console.log(response);
+        console.log(response.body);
         return this.parseJSON(response)});
   }
   
