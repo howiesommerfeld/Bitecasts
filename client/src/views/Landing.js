@@ -12,9 +12,7 @@ class Landing extends Component {
 
   componentDidMount() {
       this.getRecentBitecasts().then(response => {
-          let bitecasts = response["bitecasts"];
-          console.log("Bitecasts: "+bitecasts);
-          console.log(bitecasts.length);
+        let bitecasts = response["bitecasts"];
         if (bitecasts.length) {
             const sortedBitecasts = this.sortItemNames(bitecasts);
             this.setState({bitecasts: sortedBitecasts});
@@ -34,32 +32,17 @@ class Landing extends Component {
 
     getRecentBitecasts() {
     return fetch(`bitecasts/`, {
-        accept: "application/json"
-    })
-    //.then((response)=>{return this.checkStatus(response)})
+        headers : { 
+          'Accept': 'application/json'
+         }
+  
+      })
     .then((response)=>{
-        console.log(response);
-        console.log(response.body);
         return this.parseJSON(response)});
   }
   
-  checkStatus(response) {
-    console.log(response.status);
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    }
-    const error = new Error(`HTTP Error ${response.statusText}`);
-    error.status = response.statusText;
-    error.response = response;
-    console.log(error); // eslint-disable-line no-console
-    throw error;
-  }
-  
   parseJSON(response) {
-      //console.log(response.json());
-      let json = response.json();
-      console.log(json);
-    return json;
+    return response.json();;
   }
 
   renderBitecasts() {
