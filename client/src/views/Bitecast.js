@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
+import Loader from './Loader';
 
 
 class Bitecast extends Component {
@@ -42,19 +42,7 @@ class Bitecast extends Component {
       })
   }
 
-  render() {
-
-    const loadingIndicator = (
-        <div>
-            <h2>Loading Bitecast...</h2>    
-            <div style={{width: "100%",height: "100",display: "flex",justifyContent: "center",alignItems: "center"}}>
-                
-                <Loader type="ThreeDots" color="#2BAD60" height="100" width="100" />
-            </div>
-        </div>
-        
-    );
-        
+  render() {        
     //TODO: Refacotr into it's own component & style
     const bitecast = (
         <div className="bitecast item">
@@ -80,12 +68,15 @@ class Bitecast extends Component {
     );
 
     const currentBitecast = ( 
-        this.state.isLoading === true ? <div> {loadingIndicator} </div> : <div> {bitecast} </div>
+        this.state.isLoading === true ? <Loader></Loader> : <div> {bitecast} </div>
      );
         
 
     return (
+        
       <div className="Bitecast">
+        <br></br>
+        
         {currentBitecast}
       </div>
     );
