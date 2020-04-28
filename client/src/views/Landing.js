@@ -31,7 +31,7 @@ class Landing extends Component {
   }
 
     getRecentBitecasts() {
-    return fetch(`bitecasts/`, {
+    return fetch(`/api/bitecasts/`, {
         headers : { 
           'Accept': 'application/json'
          }
@@ -48,7 +48,7 @@ class Landing extends Component {
   renderBitecasts() {
     return this.state.bitecasts.map(bitecast => {
         const newTo = { 
-            pathname: `/bitecasts/${bitecast.id}`, 
+            pathname: `/api/bitecasts/${bitecast.id}`, 
             state: {bitecast: bitecast}
         };
       return (
