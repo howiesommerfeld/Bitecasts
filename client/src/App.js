@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo512.png'
 import { Link, Switch, Route } from 'react-router-dom';
 import Landing from './views/Landing';
 import Bitecast from './views/Bitecast';
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Link to="/" className="logo">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} height="75px" className="App-logo" alt="logo" />
         </Link>
       </header>
       <Switch>
