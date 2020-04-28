@@ -29,6 +29,7 @@ class Bitecast extends Component {
       //TODO Handle 404 elegantly here:
       .then(res => res.json())
       .then((json)=>{
+          console.log(json);
           this.setState({
               bitecast:json["bitecast"],
               isLoading: false
