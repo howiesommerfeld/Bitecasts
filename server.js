@@ -17,17 +17,20 @@ app.use(errorHandler());
 app.use(morgan('dev'));
 
 
-
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/api', apiRouter);
 
 if(process.env.NODE_ENV === 'production') {  
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', (req, res) => {    res.sendfile(path.join(__dirname, 'client/build/index.html'));})
+    let p = path.join(__dirname, 'client/build/index.html');
+    console.log(p);
+    app.get('*', (req, res) => {    res.sendfile(p);})
 } else {
-    app.get('*', (req, res) => {  res.sendFile(path.join(__dirname,'client/public/index.html'));})
+    let p = path.join(__dirname,'client/public/index.html');
+    console.log(p);
+    app.get('*', (req, res) => {  res.sendFile(p);})
 }
 
-/*app.use(function(req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
     res.header(
@@ -36,8 +39,7 @@ if(process.env.NODE_ENV === 'production') {
     );
     next();
     });
-    app.options("*", cors());
-    */
+
 
 app.listen(port, () => {
     console.log('listening on *:' + port);
